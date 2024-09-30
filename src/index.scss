@@ -1,0 +1,51 @@
+@import "../node_modules/normalize-scss/sass/normalize/import-now";
+@import "./assets/styles/globals.scss";
+
+@font-face {
+  font-family: "Roboto";
+  src:
+    local("RobotoRegular"),
+    url("./assets/fonts/RobotoRegular.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src:
+    local("RobotoMedium"),
+    url("./assets/fonts/RobotoMedium.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 0;
+}
+
+#root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  height: 1080px;
+  margin: 0 auto;
+  border-right: 1px solid $color-border;
+  border-left: 1px solid $color-border;
+  background-color: $color-backgroundcolor-root;
+}

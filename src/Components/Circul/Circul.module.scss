@@ -1,0 +1,12 @@
+@import "../../assets/styles/globals.scss";
+
+.circul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 530px;
+  height: 530px;
+  outline: 1px solid $color-dot;
+  border-radius: 1000px;
+}

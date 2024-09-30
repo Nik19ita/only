@@ -1,0 +1,19 @@
+@import "./assets/styles/globals.scss";
+
+.horizontal-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: $color-border;
+}
+
+.vertical-line {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $color-border;
+}
