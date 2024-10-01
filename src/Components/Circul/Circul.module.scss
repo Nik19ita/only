@@ -2,11 +2,11 @@
 
 .circul {
   position: absolute;
-  top: 50%;
+  top: 480px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 530px;
-  height: 530px;
-  outline: 1px solid $color-dot;
-  border-radius: 1000px;
+  translate: -50% -50%;
+  width: 532px;
+  height: 532px;
+  outline: 1px solid $color-main;
+  border-radius: 50%;
 }

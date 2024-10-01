@@ -44,8 +44,9 @@ body {
   flex-direction: column;
   max-width: 1440px;
   height: 1080px;
+  padding-left: 78px;
   margin: 0 auto;
   border-right: 1px solid $color-border;
   border-left: 1px solid $color-border;
-  background-color: $color-backgroundcolor-root;
+  background-color: $color-white;
 }

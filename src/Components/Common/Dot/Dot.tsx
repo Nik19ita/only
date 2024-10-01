@@ -1,32 +1,41 @@
-import { FC, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import { FC } from "react";
+import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHook";
+import { setMove, setNumberPages } from "../../../store/slice";
 import styles from "./Dot.module.scss";
 
 interface IDotProps {
   number: number;
-  action?: string | null;
+  getDirectionMoTion: (rotate: number) => void;
 }
 
-const Dot: FC<IDotProps> = ({ number }) => {
+const Dot: FC<IDotProps> = ({ number, getDirectionMoTion }) => {
+  const dispatch = useAppDispatch();
+  const plusRotation = useAppSelector((state) => state.project.plusRotation);
 
-  const [degValue, setDegValue] = useState(number * 60);
+  const degValue = number * 60 - 120;
+  const rotate = -degValue - plusRotation;
 
-  const keyframeName = keyframes`
-    0% { transform: rotate(${degValue}deg}) translateX(265.5px); }
-    100% { transform: rotate(${degValue}deg) translateX(265.5px); }
-  `;
-
-  const Dot = styled.div`
-    transform: rotate(${number * 60}deg);
-    animation: ${keyframeName} 1s 1 linear forwards;
-  `;
+  const onClick = () => {
+    dispatch(setNumberPages(number));
+    dispatch(setMove(`click-${number}`));
+    getDirectionMoTion(rotate);
+  };
 
   return (
-    <Dot className={styles.wrapper}>
-      <div className={styles.dot} style={{ rotate: `${360 - degValue}deg` }}>
+    <div
+      className={styles.wrapper}
+      style={{ transform: `rotate(${degValue}deg) translateX(266px)` }}
+    >
+      <div
+        onClick={onClick}
+        className={styles.dot}
+        style={{
+          rotate: `${rotate}deg`,
+        }}
+      >
         {number}
       </div>
-    </Dot>
+    </div>
   );
 };
 

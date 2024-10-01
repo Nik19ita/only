@@ -1,0 +1,17 @@
+@import "../../assets/styles/globals.scss";
+
+.toogle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 697px;
+}
+
+.paragraf {
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18.12px;
+  text-align: left;
+  color: $color-main;
+}

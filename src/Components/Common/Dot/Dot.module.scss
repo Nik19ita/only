@@ -4,8 +4,8 @@
   position: absolute;
   width: 10px;
   height: 10px;
-  top: 260px;
-  left: 260px;
+  top: 261px;
+  left: 261px;
   cursor: pointer;
 
   .dot {
@@ -20,7 +20,7 @@
     translate: -50% -50%;
     font-size: 14px;
     overflow: hidden;
-    border: 3px solid black;
+    border: 3px solid $color-black;
     border-radius: 100px;
     transition: all 0.1s ease-in-out;
     background-color: white;
@@ -29,6 +29,6 @@
   &:hover .dot {
     width: 45px;
     height: 45px;
-    border: 1px solid black;
+    border: 1px solid $color-black;
   }
 }
