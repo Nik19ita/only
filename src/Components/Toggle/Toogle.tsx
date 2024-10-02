@@ -7,7 +7,7 @@ import styles from "./Toogle.module.scss";
 const Toggle = () => {
   const dispatch = useAppDispatch();
   const numberPage = useAppSelector((state) => state.project.numberPages);
-  const [Disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const clickButtonBack = () => {
     if (numberPage > 1) {
@@ -39,13 +39,13 @@ const Toggle = () => {
       <div>
         <ButtonToggle
           type="back"
-          disabled={numberPage === 1 || Disabled}
+          disabled={numberPage === 1 || disabled}
           styleButton={numberPage === 1}
           onClick={clickButtonBack}
         />
         <ButtonToggle
           type="forward"
-          disabled={numberPage === 6 || Disabled}
+          disabled={numberPage === 6 || disabled}
           styleButton={numberPage === 6}
           onClick={clickButtonForward}
         />

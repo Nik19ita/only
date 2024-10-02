@@ -1,36 +1,57 @@
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHook";
-import { setMove, setNumberPages } from "../../../store/slice";
+import {
+  setDirectionMotion,
+  setMove,
+  setNumberPages,
+  setPosition,
+} from "../../../store/slice";
 import styles from "./Dot.module.scss";
 
 interface IDotProps {
   number: number;
-  getDirectionMoTion: (rotate: number) => void;
 }
 
-const Dot: FC<IDotProps> = ({ number, getDirectionMoTion }) => {
+const Dot: FC<IDotProps> = ({ number }) => {
+  const plusRotate = useAppSelector((state) => state.project.plusRotation);
   const dispatch = useAppDispatch();
-  const plusRotation = useAppSelector((state) => state.project.plusRotation);
+  const positionX = useAppSelector((state) => state.project.position.x);
+  const refDot = useRef<HTMLDivElement>(null);
 
   const degValue = number * 60 - 120;
-  const rotate = -degValue - plusRotation;
+
+  useEffect(() => {
+    if (number === 1) {
+      const position = refDot.current!.getBoundingClientRect();
+      dispatch(
+        setPosition({ x: Math.trunc(position.x), y: Math.trunc(position.x) }),
+      );
+    }
+  }, [dispatch, number]);
 
   const onClick = () => {
     dispatch(setNumberPages(number));
     dispatch(setMove(`click-${number}`));
-    getDirectionMoTion(rotate);
+    const position = refDot.current!.getBoundingClientRect();
+
+    if (Math.trunc(position.x) + 10 > positionX) {
+      dispatch(setDirectionMotion("-"));
+    } else {
+      dispatch(setDirectionMotion("+"));
+    }
   };
 
   return (
     <div
       className={styles.wrapper}
       style={{ transform: `rotate(${degValue}deg) translateX(266px)` }}
+      onClick={onClick}
+      ref={refDot}
     >
       <div
-        onClick={onClick}
         className={styles.dot}
         style={{
-          rotate: `${rotate}deg`,
+          rotate: `${-degValue - plusRotate}deg`,
         }}
       >
         {number}
