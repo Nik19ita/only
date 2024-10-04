@@ -2,22 +2,17 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState } from "react";
 import getRotationCount from "../../helpers/getRotationCount";
-import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
-import { setPlusRotation } from "../../store/slice";
+import { useAppSelector } from "../../hooks/ReduxHook";
 import Dot from "../Common/Dot/Dot";
 import styles from "./Circul.module.scss";
 
 const Circul = () => {
-  const dispatch = useAppDispatch();
-  
-  const directionMoTion = useAppSelector(
-    (state) => state.project.directionMotion,
+  const { move, activePage, directionMotion } = useAppSelector(
+    (state) => state.project,
   );
-  const activePage = useAppSelector((state) => state.project.activePage);
-  const move = useAppSelector((state) => state.project.move);
+  const [activeDot, setActiveDot] = useState(1);
   const refCircul = useRef(null);
   const refContainer = useRef(null);
-  const [activeDot, setActiveDot] = useState(1);
 
   useGSAP(
     () => {
@@ -27,7 +22,6 @@ const Circul = () => {
           duration: 0.3,
           ease: "none",
         });
-        setActiveDot(activePage);
       }
 
       if (move === `back-${activePage}`) {
@@ -36,24 +30,15 @@ const Circul = () => {
           duration: 0.3,
           ease: "none",
         });
-        setActiveDot(activePage);
       }
 
       if (move === `click-${activePage}`) {
         gsap.to(refCircul.current, {
-          rotation: `${directionMoTion}=${getRotationCount(activeDot, activePage) * 60}`,
+          rotation: `${directionMotion}=${getRotationCount(activeDot, activePage) * 60}`,
           duration: 0.3 * getRotationCount(activeDot, activePage),
           ease: "none",
         });
         setActiveDot(activePage);
-        dispatch(
-          setPlusRotation(
-            plusRotate +
-              Number(
-                `${directionMoTion}${getRotationCount(activeDot, activePage) * 60}`,
-              ),
-          ),
-        );
       }
     },
     { scope: refContainer, dependencies: [move] },

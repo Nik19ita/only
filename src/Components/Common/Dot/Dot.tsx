@@ -1,9 +1,11 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useRef, useState } from "react";
+import getRotationCount from "../../../helpers/getRotationCount";
 import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHook";
 import {
   setActivePages,
   setDirectionMotion,
   setMove,
+  setPlusRotation,
   setPosition,
 } from "../../../store/slice";
 import styles from "./Dot.module.scss";
@@ -13,26 +15,40 @@ interface IDotProps {
 }
 
 const Dot: FC<IDotProps> = ({ number }) => {
-  const plusRotate = useAppSelector((state) => state.project.plusRotation);
   const dispatch = useAppDispatch();
-  const positionX = useAppSelector((state) => state.project.position.x);
-  const refDot = useRef<HTMLDivElement>(null);
+  const { directionMotion, positionX, plusRotation, activePage } =
+    useAppSelector((state) => state.project);
+  const [activeDot, setACtiveDot] = useState(1);
 
-  const degValue = number * 60 - 120;
+  const refDot = useRef<HTMLDivElement>(null);
+  const degRotate = number * 60 - 120;
 
   useEffect(() => {
     if (number === 1) {
       const position = refDot.current!.getBoundingClientRect();
-      dispatch(
-        setPosition({ x: Math.trunc(position.x), y: Math.trunc(position.x) }),
-      );
+      dispatch(setPosition(Math.trunc(position.x)));
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    dispatch(
+      setPlusRotation(
+        plusRotation +
+          Number(
+            `${directionMotion}${getRotationCount(activeDot, activePage) * 60}`,
+          ),
+      ),
+    );
+    setACtiveDot(activePage);
+    console.log("+");
+  }, [activeDot, activePage, directionMotion, dispatch, plusRotation]);
 
   const onClick = () => {
     dispatch(setActivePages(number));
     dispatch(setMove(`click-${number}`));
+
     const position = refDot.current!.getBoundingClientRect();
 
     if (Math.trunc(position.x) + 10 > positionX) {
@@ -45,14 +61,14 @@ const Dot: FC<IDotProps> = ({ number }) => {
   return (
     <div
       className={styles.wrapper}
-      style={{ transform: `rotate(${degValue}deg) translateX(266px)` }}
+      style={{ transform: `rotate(${degRotate}deg) translateX(266px)` }}
       onClick={onClick}
       ref={refDot}
     >
       <div
         className={styles.dot}
         style={{
-          rotate: `${-degValue - plusRotate}deg`,
+          rotate: `${-degRotate - plusRotation}deg`,
         }}
       >
         {number}

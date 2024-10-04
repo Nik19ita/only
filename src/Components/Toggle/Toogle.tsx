@@ -13,7 +13,7 @@ const Toggle = () => {
   const clickButtonBack = () => {
     if (activePage > 1) {
       dispatch(setActivePages(activePage - 1));
-      dispatch(setPlusRotation(plusRotate + 60));
+      dispatch(setPlusRotation(plusRotate - 60));
       dispatch(setMove(`back-${activePage - 1}`));
       isDisabled();
     }
@@ -22,7 +22,7 @@ const Toggle = () => {
   const clickButtonForward = () => {
     if (activePage < 6) {
       dispatch(setActivePages(activePage + 1));
-      dispatch(setPlusRotation(plusRotate - 60));
+      dispatch(setPlusRotation(plusRotate + 60));
       dispatch(setMove(`forward-${activePage + 1}`));
       isDisabled();
     }
