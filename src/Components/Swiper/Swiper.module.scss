@@ -1,6 +1,6 @@
 @import "../../assets/styles/globals.scss";
 
-.mySwipper {
+.my-swipper {
   position: absolute;
   bottom: 104px;
   width: calc(100% - 78px - 160px);
@@ -92,4 +92,26 @@
 
 .arrow-prev {
   rotate: -180deg;
+}
+
+.my-enter {
+  opacity: 1;
+  transform: scale(0.9);
+}
+.my-active-enter {
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+.alert-exit {
+  opacity: 1;
+}
+.alert-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 300ms,
+    transform 300ms;
 }

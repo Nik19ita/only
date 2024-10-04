@@ -16,8 +16,6 @@ const Circul = () => {
   const refCircul = useRef(null);
   const refContainer = useRef(null);
 
-  console.log("render");
-
   useGSAP(
     () => {
       if (move === `forward-${activePage}`) {
@@ -44,16 +42,16 @@ const Circul = () => {
           duration: 0.3 * getRotationCount(activeDot, activePage),
           ease: "none",
         });
+        dispatch(
+          setPlusRotation(
+            plusDegRotation +
+              Number(
+                `${directionMotion}${getRotationCount(activeDot, activePage) * 60}`,
+              ),
+          ),
+        );
+        setACtiveDot(activePage);
       }
-      dispatch(
-        setPlusRotation(
-          plusDegRotation +
-            Number(
-              `${directionMotion}${getRotationCount(activeDot, activePage) * 60}`,
-            ),
-        ),
-      );
-      setACtiveDot(activePage);
     },
     { scope: refContainer, dependencies: [move] },
   );
