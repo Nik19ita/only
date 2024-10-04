@@ -1,0 +1,37 @@
+@import "../../assets/styles/globals.scss";
+
+.title {
+  position: absolute;
+  display: flex;
+  left: 0;
+  width: 500px;
+  cursor: default;
+
+  @media (max-width: 480px) {
+    left: 20px;
+  }
+}
+
+.gradient {
+  width: 5px;
+  margin-right: 78px;
+  background-image: linear-gradient(#3877ee -5%, #ef5da8 85%);
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.text {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 67.2px;
+  text-align: left;
+  color: $color-main;
+
+  @media (max-width: 480px) {
+    width: 30%;
+    font-size: 20px;
+    line-height: 20px;
+  }
+}

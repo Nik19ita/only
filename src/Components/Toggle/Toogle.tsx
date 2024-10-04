@@ -1,26 +1,29 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
-import { setMove, setNumberPages } from "../../store/slice.ts";
+import { setActivePages, setMove, setPlusRotation } from "../../store/slice.ts";
 import ButtonToggle from "../ButtomToggle/ButtonToggle";
 import styles from "./Toogle.module.scss";
 
 const Toggle = () => {
   const dispatch = useAppDispatch();
-  const numberPage = useAppSelector((state) => state.project.numberPages);
+  const plusRotate = useAppSelector((state) => state.project.plusRotation);
+  const activePage = useAppSelector((state) => state.project.activePage);
   const [disabled, setDisabled] = useState(false);
 
   const clickButtonBack = () => {
-    if (numberPage > 1) {
-      dispatch(setNumberPages(numberPage - 1));
-      dispatch(setMove(`back-${numberPage - 1}`));
+    if (activePage > 1) {
+      dispatch(setActivePages(activePage - 1));
+      dispatch(setPlusRotation(plusRotate + 60));
+      dispatch(setMove(`back-${activePage - 1}`));
       isDisabled();
     }
   };
 
   const clickButtonForward = () => {
-    if (numberPage < 6) {
-      dispatch(setNumberPages(numberPage + 1));
-      dispatch(setMove(`forward-${numberPage + 1}`));
+    if (activePage < 6) {
+      dispatch(setActivePages(activePage + 1));
+      dispatch(setPlusRotation(plusRotate - 60));
+      dispatch(setMove(`forward-${activePage + 1}`));
       isDisabled();
     }
   };
@@ -29,24 +32,24 @@ const Toggle = () => {
     setDisabled(true);
     setTimeout(() => {
       setDisabled(false);
-    }, 1300);
+    }, 300);
   };
 
   return (
     <div className={styles.toogle}>
-      <p className={styles.paragraf}>{`0${numberPage}/06`}</p>
+      <p className={styles.paragraf}>{`0${activePage}/06`}</p>
 
       <div>
         <ButtonToggle
           type="back"
-          disabled={numberPage === 1 || disabled}
-          styleButton={numberPage === 1}
+          disabled={activePage === 1 || disabled}
+          styleButton={activePage === 1}
           onClick={clickButtonBack}
         />
         <ButtonToggle
           type="forward"
-          disabled={numberPage === 6 || disabled}
-          styleButton={numberPage === 6}
+          disabled={activePage === 6 || disabled}
+          styleButton={activePage === 6}
           onClick={clickButtonForward}
         />
       </div>

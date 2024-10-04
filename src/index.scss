@@ -2,22 +2,22 @@
 @import "./assets/styles/globals.scss";
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "PTSans";
   src:
-    local("RobotoRegular"),
-    url("./assets/fonts/RobotoRegular.woff2") format("woff2");
+    local("PTSansRegular"),
+    url("./assets/fonts/PTSansRegular.woff2") format("woff2");
   font-display: swap;
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "PTSans";
   src:
-    local("RobotoMedium"),
-    url("./assets/fonts/RobotoMedium.woff2") format("woff2");
+    local("PTSansBold"),
+    url("./assets/fonts/PTSansBold.woff2") format("woff2");
   font-display: swap;
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -34,8 +34,8 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  font-size: 0;
+  font-family: "PTSans", sans-serif;
+  background-color: #f4f5f9;
 }
 
 #root {
@@ -44,9 +44,15 @@ body {
   flex-direction: column;
   max-width: 1440px;
   height: 1080px;
-  padding-left: 78px;
   margin: 0 auto;
+  padding: 170px 160px 104px 78px;
   border-right: 1px solid $color-border;
   border-left: 1px solid $color-border;
-  background-color: $color-white;
+  background-color: #f4f5f9;
+
+  @media (max-width: 480px) {
+    padding: 59px 20px 32px;
+    border: none;
+    height: 568px;
+  }
 }

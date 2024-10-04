@@ -7,6 +7,11 @@
   translate: -50% -50%;
   width: 532px;
   height: 532px;
-  outline: 1px solid $color-main;
+  outline: 1px solid $color-border;
   border-radius: 50%;
+  z-index: 10;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 }

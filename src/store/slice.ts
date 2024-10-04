@@ -8,7 +8,7 @@ type typePosition = {
 };
 
 type TypeState = {
-  numberPages: number;
+  activePage: number;
   move: typeMove;
   plusRotation: number;
   position: typePosition;
@@ -16,7 +16,7 @@ type TypeState = {
 };
 
 const initialState: TypeState = {
-  numberPages: 1,
+  activePage: 1,
   move: null,
   plusRotation: 0,
   position: {
@@ -30,8 +30,8 @@ const projectSlice = createSlice({
   name: "store",
   initialState,
   reducers: {
-    setNumberPages(state, action: PayloadAction<number>) {
-      state.numberPages = action.payload;
+    setActivePages(state, action: PayloadAction<number>) {
+      state.activePage = action.payload;
     },
     setMove(state, action: PayloadAction<typeMove>) {
       state.move = action.payload;
@@ -49,7 +49,7 @@ const projectSlice = createSlice({
 });
 
 export const {
-  setNumberPages,
+  setActivePages,
   setMove,
   setPlusRotation,
   setPosition,

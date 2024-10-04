@@ -22,11 +22,11 @@
     overflow: hidden;
     border: 3px solid $color-black;
     border-radius: 100px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.15s cubic-bezier(0.87, 0, 0.13, 1);
     background-color: white;
   }
 
-  &:hover .dot {
+  &:hover:not(:focus-visible) .dot {
     width: 45px;
     height: 45px;
     border: 1px solid $color-black;

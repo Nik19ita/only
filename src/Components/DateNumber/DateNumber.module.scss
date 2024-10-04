@@ -1,0 +1,24 @@
+@import "../../assets/styles/globals.scss";
+
+.date {
+  margin-right: 50px;
+  font-size: 200px;
+  font-weight: 700;
+  line-height: 160px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  cursor: default;
+
+  @media (max-width: 480px) {
+    font-size: 56px;
+    line-height: 72.46px;
+  }
+}
+
+.first {
+  color: $color-blue;
+}
+
+.second {
+  color: $color-pink;
+}

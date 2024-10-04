@@ -1,9 +1,9 @@
 import { FC, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHook";
 import {
+  setActivePages,
   setDirectionMotion,
   setMove,
-  setNumberPages,
   setPosition,
 } from "../../../store/slice";
 import styles from "./Dot.module.scss";
@@ -27,10 +27,11 @@ const Dot: FC<IDotProps> = ({ number }) => {
         setPosition({ x: Math.trunc(position.x), y: Math.trunc(position.x) }),
       );
     }
-  }, [dispatch, number]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onClick = () => {
-    dispatch(setNumberPages(number));
+    dispatch(setActivePages(number));
     dispatch(setMove(`click-${number}`));
     const position = refDot.current!.getBoundingClientRect();
 

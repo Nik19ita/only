@@ -9,11 +9,11 @@ import styles from "./Circul.module.scss";
 
 const Circul = () => {
   const dispatch = useAppDispatch();
-  const plusRotate = useAppSelector((state) => state.project.plusRotation);
+  
   const directionMoTion = useAppSelector(
     (state) => state.project.directionMotion,
   );
-  const numberPage = useAppSelector((state) => state.project.numberPages);
+  const activePage = useAppSelector((state) => state.project.activePage);
   const move = useAppSelector((state) => state.project.move);
   const refCircul = useRef(null);
   const refContainer = useRef(null);
@@ -21,38 +21,36 @@ const Circul = () => {
 
   useGSAP(
     () => {
-      if (move === `forward-${numberPage}`) {
+      if (move === `forward-${activePage}`) {
         gsap.to(refCircul.current, {
           rotation: "-=60",
-          duration: 1.3,
+          duration: 0.3,
           ease: "none",
         });
-        setActiveDot(numberPage);
-        dispatch(setPlusRotation(plusRotate - 60));
+        setActiveDot(activePage);
       }
 
-      if (move === `back-${numberPage}`) {
+      if (move === `back-${activePage}`) {
         gsap.to(refCircul.current, {
           rotation: "+=60",
-          duration: 1.3,
+          duration: 0.3,
           ease: "none",
         });
-        setActiveDot(numberPage);
-        dispatch(setPlusRotation(plusRotate + 60));
+        setActiveDot(activePage);
       }
 
-      if (move === `click-${numberPage}`) {
+      if (move === `click-${activePage}`) {
         gsap.to(refCircul.current, {
-          rotation: `${directionMoTion}=${getRotationCount(activeDot, numberPage) * 60}`,
-          duration: 1.3 * getRotationCount(activeDot, numberPage),
+          rotation: `${directionMoTion}=${getRotationCount(activeDot, activePage) * 60}`,
+          duration: 0.3 * getRotationCount(activeDot, activePage),
           ease: "none",
         });
-        setActiveDot(numberPage);
+        setActiveDot(activePage);
         dispatch(
           setPlusRotation(
             plusRotate +
               Number(
-                `${directionMoTion}${getRotationCount(activeDot, numberPage) * 60}`,
+                `${directionMoTion}${getRotationCount(activeDot, activePage) * 60}`,
               ),
           ),
         );
