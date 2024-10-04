@@ -6,7 +6,7 @@ import styles from "./Toogle.module.scss";
 
 const Toggle = () => {
   const dispatch = useAppDispatch();
-  const plusRotate = useAppSelector((state) => state.project.plusRotation);
+  const plusRotate = useAppSelector((state) => state.project.plusDegRotation);
   const activePage = useAppSelector((state) => state.project.activePage);
   const [disabled, setDisabled] = useState(false);
 

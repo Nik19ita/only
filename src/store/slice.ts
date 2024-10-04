@@ -6,7 +6,7 @@ type typeDirectionMotion = "+" | "-" | "";
 type TypeState = {
   activePage: number;
   move: typeMove;
-  plusRotation: number;
+  plusDegRotation: number;
   positionX: number;
   directionMotion: typeDirectionMotion;
 };
@@ -14,7 +14,7 @@ type TypeState = {
 const initialState: TypeState = {
   activePage: 1,
   move: null,
-  plusRotation: 0,
+  plusDegRotation: 0,
   positionX: 0,
   directionMotion: "",
 };
@@ -30,7 +30,7 @@ const projectSlice = createSlice({
       state.move = action.payload;
     },
     setPlusRotation(state, action: PayloadAction<number>) {
-      state.plusRotation = action.payload;
+      state.plusDegRotation = action.payload;
     },
     setPosition(state, action: PayloadAction<number>) {
       state.positionX = action.payload;

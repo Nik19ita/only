@@ -21,6 +21,7 @@ const SwipperWraper = () => {
   const [_, setInit] = useState(false);
   const activePage = useAppSelector((state) => state.project.activePage);
   const [activePageState, setActivePage] = useState(0);
+  console.log("swiper");
 
   useEffect(() => {
     setTimeout(setActivePage, 300, activePage);
@@ -35,9 +36,9 @@ const SwipperWraper = () => {
     disabledClass: styles["button-disabled"],
   };
 
-  return (
-    <AnimatePresence>
-      {activePageState === activePage && (
+  if (activePageState === activePage) {
+    return (
+      <AnimatePresence>
         <motion.div
           className={styles.mySwipper}
           key="swiper"
@@ -52,7 +53,9 @@ const SwipperWraper = () => {
             direction="horizontal"
             slidesPerView="auto"
             navigation={navigation}
+            initialSlide={0}
             slideNextClass={styles["next-slide"]}
+            slidesOffsetAfter={50}
             pagination={{
               clickable: true,
               clickableClass: styles.pagination,
@@ -92,9 +95,9 @@ const SwipperWraper = () => {
             <Arrow />
           </button>
         </motion.div>
-      )}
-    </AnimatePresence>
-  );
+      </AnimatePresence>
+    );
+  }
 };
 
 export default SwipperWraper;

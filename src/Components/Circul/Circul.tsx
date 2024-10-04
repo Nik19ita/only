@@ -2,17 +2,21 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState } from "react";
 import getRotationCount from "../../helpers/getRotationCount";
-import { useAppSelector } from "../../hooks/ReduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
+import { setPlusRotation } from "../../store/slice";
 import Dot from "../Common/Dot/Dot";
 import styles from "./Circul.module.scss";
 
 const Circul = () => {
-  const { move, activePage, directionMotion } = useAppSelector(
+  const dispatch = useAppDispatch();
+  const { move, activePage, directionMotion, plusDegRotation } = useAppSelector(
     (state) => state.project,
   );
-  const [activeDot, setActiveDot] = useState(1);
+  const [activeDot, setACtiveDot] = useState(1);
   const refCircul = useRef(null);
   const refContainer = useRef(null);
+
+  console.log("render");
 
   useGSAP(
     () => {
@@ -22,6 +26,7 @@ const Circul = () => {
           duration: 0.3,
           ease: "none",
         });
+        setACtiveDot(activePage);
       }
 
       if (move === `back-${activePage}`) {
@@ -30,6 +35,7 @@ const Circul = () => {
           duration: 0.3,
           ease: "none",
         });
+        setACtiveDot(activePage);
       }
 
       if (move === `click-${activePage}`) {
@@ -38,8 +44,16 @@ const Circul = () => {
           duration: 0.3 * getRotationCount(activeDot, activePage),
           ease: "none",
         });
-        setActiveDot(activePage);
       }
+      dispatch(
+        setPlusRotation(
+          plusDegRotation +
+            Number(
+              `${directionMotion}${getRotationCount(activeDot, activePage) * 60}`,
+            ),
+        ),
+      );
+      setACtiveDot(activePage);
     },
     { scope: refContainer, dependencies: [move] },
   );

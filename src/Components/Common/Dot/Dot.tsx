@@ -1,11 +1,9 @@
-import { FC, useEffect, useRef, useState } from "react";
-import getRotationCount from "../../../helpers/getRotationCount";
+import { FC, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHook";
 import {
   setActivePages,
   setDirectionMotion,
   setMove,
-  setPlusRotation,
   setPosition,
 } from "../../../store/slice";
 import styles from "./Dot.module.scss";
@@ -16,9 +14,9 @@ interface IDotProps {
 
 const Dot: FC<IDotProps> = ({ number }) => {
   const dispatch = useAppDispatch();
-  const { directionMotion, positionX, plusRotation, activePage } =
-    useAppSelector((state) => state.project);
-  const [activeDot, setACtiveDot] = useState(1);
+  const { positionX, plusDegRotation } = useAppSelector(
+    (state) => state.project,
+  );
 
   const refDot = useRef<HTMLDivElement>(null);
   const degRotate = number * 60 - 120;
@@ -28,22 +26,8 @@ const Dot: FC<IDotProps> = ({ number }) => {
       const position = refDot.current!.getBoundingClientRect();
       dispatch(setPosition(Math.trunc(position.x)));
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    dispatch(
-      setPlusRotation(
-        plusRotation +
-          Number(
-            `${directionMotion}${getRotationCount(activeDot, activePage) * 60}`,
-          ),
-      ),
-    );
-    setACtiveDot(activePage);
-    console.log("+");
-  }, [activeDot, activePage, directionMotion, dispatch, plusRotation]);
 
   const onClick = () => {
     dispatch(setActivePages(number));
@@ -68,7 +52,7 @@ const Dot: FC<IDotProps> = ({ number }) => {
       <div
         className={styles.dot}
         style={{
-          rotate: `${-degRotate - plusRotation}deg`,
+          rotate: `${-degRotate - plusDegRotation}deg`,
         }}
       >
         {number}
