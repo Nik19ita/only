@@ -37,13 +37,13 @@ const SwipperWraper = () => {
         key={move}
         in={moveBoolean}
         timeout={{
-          enter: 1000,
-          exit: 2000,
+          enter: 300,
+          exit: 300,
         }}
         unmountOnExit
         classNames={classNames}
       >
-        <SwipperCustom /> */
+        <SwipperCustom />
       </CSSTransition>
     </>
   );

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import getRotationCount from "../../helpers/getRotationCount";
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
 import { setPlusRotation } from "../../store/slice";
-import Dot from "../Common/Dot/Dot";
+import Dot from "../Dot/Dot";
 import styles from "./Circul.module.scss";
 
 const Circul = () => {

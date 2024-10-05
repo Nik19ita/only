@@ -1,11 +1,12 @@
 import { FC, useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/ReduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
 import {
   setActivePages,
   setDirectionMotion,
   setMove,
+  setMoveBoolean,
   setPosition,
-} from "../../../store/slice";
+} from "../../store/slice";
 import styles from "./Dot.module.scss";
 
 interface IDotProps {
@@ -32,7 +33,7 @@ const Dot: FC<IDotProps> = ({ number }) => {
   const onClick = () => {
     dispatch(setActivePages(number));
     dispatch(setMove(`click-${number}`));
-
+    dispatch(setMoveBoolean(false));
     const position = refDot.current!.getBoundingClientRect();
 
     if (Math.trunc(position.x) + 10 > positionX) {
