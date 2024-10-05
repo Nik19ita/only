@@ -25,14 +25,9 @@
 }
 
 .swiper-slide {
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-}
-
-.swiper-slide {
   width: 300px;
   margin-right: 80px;
+  cursor: grab;
 
   @media (max-width: 480px) {
     width: 80%;
@@ -48,6 +43,7 @@
 
 .pagination {
   display: none;
+  animation: swiper 1s 1;
 
   @media (max-width: 480px) {
     display: block;
@@ -55,7 +51,22 @@
 }
 
 .title {
+  font-family: "BebasNeue";
   margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: $color-blue;
+}
+
+.paragraf {
+  font-family: PT Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  text-align: left;
+  color: $color-black;
 }
 
 .button {
@@ -92,26 +103,4 @@
 
 .arrow-prev {
   rotate: -180deg;
-}
-
-.my-enter {
-  opacity: 1;
-  transform: scale(0.9);
-}
-.my-active-enter {
-  opacity: 1;
-  transform: translateX(0);
-  transition:
-    opacity 300ms,
-    transform 300ms;
-}
-.alert-exit {
-  opacity: 1;
-}
-.alert-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition:
-    opacity 300ms,
-    transform 300ms;
 }

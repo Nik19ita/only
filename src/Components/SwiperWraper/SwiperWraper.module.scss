@@ -1,0 +1,36 @@
+@keyframes animation-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animation-exit {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.enter {
+  opacity: 0;
+}
+
+.enter-active {
+  opacity: 1;
+  animation: animation-enter 0.2s ease forwards;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exit-active {
+  animation: animation-exit 0.2s ease forwards;
+}

@@ -9,6 +9,7 @@ type TypeState = {
   plusDegRotation: number;
   positionX: number;
   directionMotion: typeDirectionMotion;
+  moveBoolean: boolean;
 };
 
 const initialState: TypeState = {
@@ -17,6 +18,7 @@ const initialState: TypeState = {
   plusDegRotation: 0,
   positionX: 0,
   directionMotion: "",
+  moveBoolean: true,
 };
 
 const projectSlice = createSlice({
@@ -28,6 +30,9 @@ const projectSlice = createSlice({
     },
     setMove(state, action: PayloadAction<typeMove>) {
       state.move = action.payload;
+    },
+    setMoveBoolean(state, action: PayloadAction<boolean>) {
+      state.moveBoolean = action.payload;
     },
     setPlusRotation(state, action: PayloadAction<number>) {
       state.plusDegRotation = action.payload;
@@ -47,6 +52,7 @@ export const {
   setPlusRotation,
   setPosition,
   setDirectionMotion,
+  setMoveBoolean,
 } = projectSlice.actions;
 
 export default projectSlice.reducer;
