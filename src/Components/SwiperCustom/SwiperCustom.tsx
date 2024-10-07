@@ -34,7 +34,6 @@ const SwipperCustom = () => {
           disabledClass: styles["button-disabled"],
         }}
         slideNextClass={styles["next-slide"]}
-        slidesOffsetAfter={50}
         onInit={() => setInit(true)}
         pagination={{
           clickable: true,

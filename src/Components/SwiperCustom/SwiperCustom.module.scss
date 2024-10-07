@@ -29,9 +29,13 @@
   margin-right: 80px;
   cursor: grab;
 
+  &:last-child {
+    margin-right: 50px;
+  }
+
   @media (max-width: 480px) {
     width: 80%;
-    margin-right: 25px;
+    margin-right: 0;
   }
 }
 

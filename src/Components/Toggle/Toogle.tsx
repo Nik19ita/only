@@ -6,7 +6,7 @@ import {
   setMoveBoolean,
   setPlusRotation,
 } from "../../store/slice.ts";
-import ButtonToggle from "../ButtomToggle/ButtonToggle";
+import ButtonToggle from "../ButtonToggle/ButtonToggle.tsx";
 import styles from "./Toogle.module.scss";
 
 const Toggle = () => {
