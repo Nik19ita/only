@@ -13,8 +13,9 @@ const Circul = () => {
     (state) => state.project,
   );
   const [activeDot, setACtiveDot] = useState(1);
-  const refCircul = useRef(null);
+
   const refContainer = useRef(null);
+  const refCircul = useRef(null);
 
   useGSAP(
     () => {
