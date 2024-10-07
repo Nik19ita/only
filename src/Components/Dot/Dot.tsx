@@ -15,7 +15,7 @@ interface IDotProps {
 
 const Dot: FC<IDotProps> = ({ number }) => {
   const dispatch = useAppDispatch();
-  const { positionX, plusDegRotation } = useAppSelector(
+  const { positionActiveDot, plusDegRotation } = useAppSelector(
     (state) => state.project,
   );
 
@@ -25,20 +25,26 @@ const Dot: FC<IDotProps> = ({ number }) => {
   useEffect(() => {
     if (number === 1) {
       const position = refDot.current!.getBoundingClientRect();
-      dispatch(setPosition(Math.trunc(position.x)));
+      dispatch(
+        setPosition({ x: Math.trunc(position.x), y: Math.trunc(position.y) }),
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onClick = () => {
     const position = refDot.current!.getBoundingClientRect();
-    if (Math.trunc(position.x) !== positionX) {
-      console.log("asfsaf");
+    if (
+      Math.trunc(position.x) === positionActiveDot.x &&
+      Math.trunc(position.y) === positionActiveDot.y
+    ) {
+      return;
+    } else {
       dispatch(setActivePages(number));
       dispatch(setMove(`click-${number}`));
       dispatch(setMoveBoolean(false));
 
-      if (Math.trunc(position.x) + 10 > positionX) {
+      if (Math.trunc(position.x) >= positionActiveDot.x) {
         dispatch(setDirectionMotion("-"));
       } else {
         dispatch(setDirectionMotion("+"));

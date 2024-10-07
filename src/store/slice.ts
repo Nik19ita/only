@@ -2,12 +2,16 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type typeMove = string | "";
 type typeDirectionMotion = "+" | "-" | "";
+type typePositionActiveDot = {
+  x: number;
+  y: number;
+};
 
 type TypeState = {
   activePage: number;
   move: typeMove;
   plusDegRotation: number;
-  positionX: number;
+  positionActiveDot: typePositionActiveDot;
   directionMotion: typeDirectionMotion;
   moveBoolean: boolean;
 };
@@ -16,7 +20,10 @@ const initialState: TypeState = {
   activePage: 1,
   move: "",
   plusDegRotation: 0,
-  positionX: 0,
+  positionActiveDot: {
+    y: 0,
+    x: 0,
+  },
   directionMotion: "",
   moveBoolean: true,
 };
@@ -37,8 +44,8 @@ const projectSlice = createSlice({
     setPlusRotation(state, action: PayloadAction<number>) {
       state.plusDegRotation = action.payload;
     },
-    setPosition(state, action: PayloadAction<number>) {
-      state.positionX = action.payload;
+    setPosition(state, action: PayloadAction<typePositionActiveDot>) {
+      state.positionActiveDot = action.payload;
     },
     setDirectionMotion(state, action: PayloadAction<typeDirectionMotion>) {
       state.directionMotion = action.payload;
