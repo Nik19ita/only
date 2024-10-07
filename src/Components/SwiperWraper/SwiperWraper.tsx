@@ -7,24 +7,11 @@ import "swiper/scss/navigation";
 
 // import required modules
 
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
-import { setMoveBoolean } from "../../store/slice";
+import { useAppSelector } from "../../hooks/ReduxHook";
 import SwipperCustom from "../SwiperCustom/SwiperCustom";
 
 const SwipperWraper = () => {
-  const dispatch = useAppDispatch();
-  const { moveBoolean, move, activePage } = useAppSelector(
-    (state) => state.project,
-  );
-
-  useEffect(() => {
-    if (moveBoolean === false) {
-      setTimeout(() => {
-        dispatch(setMoveBoolean(true));
-      }, 300);
-    }
-  }, [dispatch, moveBoolean]);
+  const { move, activePage } = useAppSelector((state) => state.project);
 
   const variants = {
     initial: {
@@ -32,16 +19,17 @@ const SwipperWraper = () => {
     },
     animate: {
       opacity: 1,
-      transition: { delay: 0.3 },
+      transition: { duration: 0.3, delay: 0.5 },
     },
     exit: {
       opacity: 0,
+      transition: { duration: 0.3 },
     },
   };
 
   return (
     <AnimatePresence initial={false}>
-      {moveBoolean && (
+      {move && (
         <motion.div
           key={move}
           initial="initial"

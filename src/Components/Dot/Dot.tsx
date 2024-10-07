@@ -4,7 +4,6 @@ import {
   setActivePages,
   setDirectionMotion,
   setMove,
-  setMoveBoolean,
   setPosition,
 } from "../../store/slice";
 import styles from "./Dot.module.scss";
@@ -42,7 +41,6 @@ const Dot: FC<IDotProps> = ({ number }) => {
     } else {
       dispatch(setActivePages(number));
       dispatch(setMove(`click-${number}`));
-      dispatch(setMoveBoolean(false));
 
       if (Math.trunc(position.x) >= positionActiveDot.x) {
         dispatch(setDirectionMotion("-"));
