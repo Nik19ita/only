@@ -31,15 +31,18 @@ const Dot: FC<IDotProps> = ({ number }) => {
   }, []);
 
   const onClick = () => {
-    dispatch(setActivePages(number));
-    dispatch(setMove(`click-${number}`));
-    dispatch(setMoveBoolean(false));
     const position = refDot.current!.getBoundingClientRect();
+    if (Math.trunc(position.x) !== positionX) {
+      console.log("asfsaf");
+      dispatch(setActivePages(number));
+      dispatch(setMove(`click-${number}`));
+      dispatch(setMoveBoolean(false));
 
-    if (Math.trunc(position.x) + 10 > positionX) {
-      dispatch(setDirectionMotion("-"));
-    } else {
-      dispatch(setDirectionMotion("+"));
+      if (Math.trunc(position.x) + 10 > positionX) {
+        dispatch(setDirectionMotion("-"));
+      } else {
+        dispatch(setDirectionMotion("+"));
+      }
     }
   };
 
