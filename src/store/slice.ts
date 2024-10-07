@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type typeMove = string | null;
+type typeMove = string | "";
 type typeDirectionMotion = "+" | "-" | "";
 
 type TypeState = {
@@ -14,7 +14,7 @@ type TypeState = {
 
 const initialState: TypeState = {
   activePage: 1,
-  move: null,
+  move: "",
   plusDegRotation: 0,
   positionX: 0,
   directionMotion: "",

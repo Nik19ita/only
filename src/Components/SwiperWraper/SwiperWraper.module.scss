@@ -24,7 +24,7 @@
 
 .enter-active {
   opacity: 1;
-  animation: animation-enter 0.3s ease forwards;
+  animation: animation-enter 3s ease forwards;
 }
 
 .exit {
@@ -32,5 +32,5 @@
 }
 
 .exit-active {
-  animation: animation-exit 0.3s ease forwards;
+  animation: animation-exit 3s ease forwards;
 }

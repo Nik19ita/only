@@ -1,11 +1,9 @@
-/* eslint-disable react/function-component-definition */
-import { CSSTransition } from "react-transition-group";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Import Swiper styles
 import "swiper/css/pagination";
 import "swiper/scss";
 import "swiper/scss/navigation";
-import styles from "./SwiperWraper.module.scss";
 
 // import required modules
 
@@ -16,36 +14,45 @@ import SwipperCustom from "../SwiperCustom/SwiperCustom";
 
 const SwipperWraper = () => {
   const dispatch = useAppDispatch();
-  const { moveBoolean, move } = useAppSelector((state) => state.project);
+  const { moveBoolean, move, activePage } = useAppSelector(
+    (state) => state.project,
+  );
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(setMoveBoolean(true));
-    }, 250);
+    if (moveBoolean === false) {
+      setTimeout(() => {
+        dispatch(setMoveBoolean(true));
+      }, 300);
+    }
   }, [dispatch, moveBoolean]);
 
-  const classNames = {
-    enter: styles.enter,
-    enterActive: styles["enter-active"],
-    exit: styles.exit,
-    exitActive: styles["exit-active"],
+  const variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: { delay: 0.3 },
+    },
+    exit: {
+      opacity: 0,
+    },
   };
 
   return (
-    <>
-      <CSSTransition
-        key={move}
-        in={moveBoolean}
-        timeout={{
-          enter: 300,
-          exit: 300,
-        }}
-        unmountOnExit
-        classNames={classNames}
-      >
-        <SwipperCustom />
-      </CSSTransition>
-    </>
+    <AnimatePresence initial={false}>
+      {moveBoolean && (
+        <motion.div
+          key={move}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={variants}
+        >
+          <SwipperCustom activePage={activePage} />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

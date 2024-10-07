@@ -1,5 +1,5 @@
 /* eslint-disable react/function-component-definition */
-import { useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Arrow from "../../assets/img/arrow-swiper.svg?react";
 import data from "../../Copyright";
@@ -13,12 +13,14 @@ import styles from "./SwiperCustom.module.scss";
 // import required modules
 
 import { Navigation, Pagination } from "swiper/modules";
-import { useAppSelector } from "../../hooks/ReduxHook";
 
-const SwipperCustom = () => {
+interface ISwipperCustomProps {
+  activePage: number;
+}
+
+const SwipperCustom: FC<ISwipperCustomProps> = ({ activePage }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setInit] = useState(false);
-  const { activePage } = useAppSelector((state) => state.project);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
