@@ -9,9 +9,10 @@ import styles from "./Circul.module.scss";
 
 const Circul = () => {
   const dispatch = useAppDispatch();
-  const { move, activePage, directionMotion, plusDegRotation } = useAppSelector(
+  const { activePage, directionMotion, plusDegRotation } = useAppSelector(
     (state) => state.project,
   );
+
   const [activeDot, setACtiveDot] = useState(1);
 
   const refContainer = useRef(null);
@@ -19,25 +20,8 @@ const Circul = () => {
 
   useGSAP(
     () => {
-      if (move === `forward-${activePage}`) {
-        gsap.to(refCircul.current, {
-          rotation: "-=60",
-          duration: 0.3,
-          ease: "none",
-        });
-        setACtiveDot(activePage);
-      }
-
-      if (move === `back-${activePage}`) {
-        gsap.to(refCircul.current, {
-          rotation: "+=60",
-          duration: 0.3,
-          ease: "none",
-        });
-        setACtiveDot(activePage);
-      }
-
-      if (move === `click-${activePage}`) {
+      if (activePage !== activeDot) {
+        console.log("asfasf");
         gsap.to(refCircul.current, {
           rotation: `${directionMotion}=${getRotationCount(activeDot, activePage) * 60}`,
           duration: 0.3 * getRotationCount(activeDot, activePage),
@@ -54,7 +38,7 @@ const Circul = () => {
         setACtiveDot(activePage);
       }
     },
-    { scope: refContainer, dependencies: [move] },
+    { scope: refContainer, dependencies: [activePage] },
   );
 
   return (

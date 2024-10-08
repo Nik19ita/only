@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
-import { setActivePages, setMove, setPlusRotation } from "../../store/slice.ts";
+import { setActivePages, setDirectionMotion } from "../../store/slice.ts";
 import ButtonToggle from "../ButtonToggle/ButtonToggle.tsx";
 import styles from "./Toogle.module.scss";
 
 const Toggle = () => {
   const dispatch = useAppDispatch();
-  const plusRotate = useAppSelector((state) => state.project.plusDegRotation);
   const activePage = useAppSelector((state) => state.project.activePage);
   const [disabled, setDisabled] = useState(false);
 
   const clickButtonBack = () => {
     if (activePage > 1) {
       dispatch(setActivePages(activePage - 1));
-      dispatch(setPlusRotation(plusRotate + 60));
-      dispatch(setMove(`back-${activePage - 1}`));
+      dispatch(setDirectionMotion("+"));
       isDisabled();
     }
   };
@@ -22,8 +20,7 @@ const Toggle = () => {
   const clickButtonForward = () => {
     if (activePage < 6) {
       dispatch(setActivePages(activePage + 1));
-      dispatch(setPlusRotation(plusRotate - 60));
-      dispatch(setMove(`forward-${activePage + 1}`));
+      dispatch(setDirectionMotion("-"));
       isDisabled();
     }
   };

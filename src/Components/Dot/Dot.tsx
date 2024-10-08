@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
 import {
   setActivePages,
   setDirectionMotion,
-  setMove,
   setPosition,
 } from "../../store/slice";
 import styles from "./Dot.module.scss";
@@ -40,7 +39,6 @@ const Dot: FC<IDotProps> = ({ number }) => {
       return;
     } else {
       dispatch(setActivePages(number));
-      dispatch(setMove(`click-${number}`));
 
       if (Math.trunc(position.x) >= positionActiveDot.x) {
         dispatch(setDirectionMotion("-"));

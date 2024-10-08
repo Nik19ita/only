@@ -11,7 +11,7 @@ import { useAppSelector } from "../../hooks/ReduxHook";
 import SwipperCustom from "../SwiperCustom/SwiperCustom";
 
 const SwipperWraper = () => {
-  const { move, activePage } = useAppSelector((state) => state.project);
+  const { activePage } = useAppSelector((state) => state.project);
 
   const variants = {
     initial: {
@@ -29,9 +29,9 @@ const SwipperWraper = () => {
 
   return (
     <AnimatePresence initial={false}>
-      {move && (
+      {activePage && (
         <motion.div
-          key={move}
+          key={`swiper-wraper-${activePage}`}
           initial="initial"
           animate="animate"
           exit="exit"
