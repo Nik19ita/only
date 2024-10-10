@@ -22,6 +22,7 @@ const DateNumber: FC<IDateNumberProps> = ({ numberComponent }) => {
         setTimeout(setDateNumber, 30, dateNumber - 1);
     }
   }, [dateNumber, numberComponent, numberData, activePage]);
+
   return (
     <p className={[styles.date, styles[`${numberComponent}`]].join(" ")}>
       {dateNumber}
