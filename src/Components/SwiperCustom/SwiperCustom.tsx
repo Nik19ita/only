@@ -35,7 +35,7 @@ const SwipperCustom: FC<ISwipperCustomProps> = ({ activePage }) => {
           nextEl: nextRef.current,
           disabledClass: styles["button-disabled"],
         }}
-        slidesOffsetAfter={50}
+        slidesOffsetAfter={70}
         slideNextClass={styles["next-slide"]}
         onInit={() => setInit(true)}
         pagination={{

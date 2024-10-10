@@ -32,6 +32,10 @@
   @media (max-width: 480px) {
     width: 80%;
     margin-right: 30px;
+
+    &:last-child {
+      margin-right: auto;
+    }
   }
 }
 
