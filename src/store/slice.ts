@@ -8,6 +8,7 @@ type typePositionActiveDot = {
 
 type TypeState = {
   activePage: number;
+  rotationCount: number;
   plusDegRotation: number;
   positionActiveDot: typePositionActiveDot;
   directionMotion: typeDirectionMotion;
@@ -15,6 +16,7 @@ type TypeState = {
 
 const initialState: TypeState = {
   activePage: 1,
+  rotationCount: 0,
   plusDegRotation: 0,
   positionActiveDot: {
     y: 0,
@@ -30,6 +32,9 @@ const projectSlice = createSlice({
     setActivePages(state, action: PayloadAction<number>) {
       state.activePage = action.payload;
     },
+    setRotationCount(state, action: PayloadAction<number>) {
+      state.rotationCount = action.payload;
+    },
     setPlusRotation(state, action: PayloadAction<number>) {
       state.plusDegRotation = action.payload;
     },
@@ -44,6 +49,7 @@ const projectSlice = createSlice({
 
 export const {
   setActivePages,
+  setRotationCount,
   setPlusRotation,
   setPosition,
   setDirectionMotion,

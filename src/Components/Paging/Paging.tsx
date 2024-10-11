@@ -1,6 +1,11 @@
 import { useState } from "react";
+import getRotationCount from "../../helpers/getRotationCount.ts";
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook.ts";
-import { setActivePages, setDirectionMotion } from "../../store/slice.ts";
+import {
+  setActivePages,
+  setDirectionMotion,
+  setRotationCount,
+} from "../../store/slice.ts";
 import ButtonToggle from "../ButtonToggle/ButtonToggle.tsx";
 import styles from "./Paging.module.scss";
 
@@ -12,6 +17,7 @@ const Paging = () => {
   const clickButtonBack = () => {
     if (activePage > 1) {
       dispatch(setActivePages(activePage - 1));
+      dispatch(setRotationCount(getRotationCount(activePage, activePage - 1)));
       dispatch(setDirectionMotion("+"));
       isDisabled();
     }
@@ -20,6 +26,7 @@ const Paging = () => {
   const clickButtonForward = () => {
     if (activePage < 6) {
       dispatch(setActivePages(activePage + 1));
+      dispatch(setRotationCount(getRotationCount(activePage, activePage + 1)));
       dispatch(setDirectionMotion("-"));
       isDisabled();
     }

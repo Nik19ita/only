@@ -1,9 +1,11 @@
 import { FC, useEffect, useRef } from "react";
+import getRotationCount from "../../helpers/getRotationCount";
 import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
 import {
   setActivePages,
   setDirectionMotion,
   setPosition,
+  setRotationCount,
 } from "../../store/slice";
 import styles from "./Dot.module.scss";
 
@@ -13,7 +15,7 @@ interface IDotProps {
 
 const Dot: FC<IDotProps> = ({ number }) => {
   const dispatch = useAppDispatch();
-  const { positionActiveDot, plusDegRotation } = useAppSelector(
+  const { activePage, positionActiveDot, plusDegRotation } = useAppSelector(
     (state) => state.project,
   );
 
@@ -38,6 +40,9 @@ const Dot: FC<IDotProps> = ({ number }) => {
     ) {
       return;
     } else {
+      console.log(activePage);
+      console.log(number);
+      dispatch(setRotationCount(getRotationCount(activePage, number)));
       dispatch(setActivePages(number));
 
       if (Math.trunc(position.x) >= positionActiveDot.x) {
