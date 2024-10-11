@@ -1,8 +1,8 @@
-const getRotationCount = (activeDot: number, numberPage: number) => {
-  if (Math.abs(activeDot - numberPage) > 3) {
-    return 6 - Math.abs(activeDot - numberPage);
+const getRotationCount = (prevDot: number, activeDot: number) => {
+  if (Math.abs(prevDot - activeDot) > 3) {
+    return 6 - Math.abs(prevDot - activeDot);
   } else {
-    return Math.abs(activeDot - numberPage);
+    return Math.abs(prevDot - activeDot);
   }
 };
 
