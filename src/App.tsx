@@ -1,8 +1,8 @@
 import Circul from "./components/Circul/Circul";
 import Dates from "./components/Dates/Dates";
+import Paging from "./components/Paging/Paging";
 import SwipperWraper from "./components/SwiperWraper/SwiperWraper";
 import Title from "./components/Title/Title";
-import Toggle from "./components/Toggle/Toogle";
 import TwoLine from "./components/TwoLine/TwoLine";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <TwoLine />
       <Title />
-      <Toggle />
+      <Paging />
       <Circul />
       <Dates />
       <SwipperWraper />
