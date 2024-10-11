@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHook.ts";
 import { setActivePages, setDirectionMotion } from "../../store/slice.ts";
 import ButtonToggle from "../ButtonToggle/ButtonToggle.tsx";
-import styles from "./Toogle.module.scss";
+import styles from "./Paging.module.scss";
 
-const Toggle = () => {
+const Paging = () => {
   const dispatch = useAppDispatch();
   const activePage = useAppSelector((state) => state.project.activePage);
   const [disabled, setDisabled] = useState(false);
@@ -54,4 +54,4 @@ const Toggle = () => {
   );
 };
 
-export default Toggle;
+export default Paging;
