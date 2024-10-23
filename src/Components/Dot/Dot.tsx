@@ -40,8 +40,6 @@ const Dot: FC<IDotProps> = ({ number }) => {
     ) {
       return;
     } else {
-      console.log(activePage);
-      console.log(number);
       dispatch(setRotationCount(getRotationCount(activePage, number)));
       dispatch(setActivePages(number));
 

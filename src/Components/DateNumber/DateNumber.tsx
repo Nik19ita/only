@@ -15,6 +15,7 @@ const DateNumber: FC<IDateNumberProps> = ({ numberComponent }) => {
 
   useEffect(() => {
     if (data[activePage - 1][numberData] > dateNumber) {
+      console.log(dateNumber);
       dateNumber !== data[activePage - 1][numberData] &&
         setTimeout(setDateNumber, 30, dateNumber + 1);
     } else {
