@@ -2,35 +2,14 @@
 @import "./assets/styles/globals.scss";
 
 @font-face {
-  font-family: "PTSans";
+  font-family: "TTNorms";
   src:
-    local("PTSansRegular"),
-    url("./assets/fonts/PTSansRegular.woff2") format("woff2");
+    local("TTNormsMedium"),
+    url("/fonts/TTNormsMedium.woff2") format("woff2");
   font-display: swap;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
-
-@font-face {
-  font-family: "PTSans";
-  src:
-    local("PTSansBold"),
-    url("./assets/fonts/PTSansBold.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "BebasNeue";
-  src:
-    local("BebasNeueRegula"),
-    url("./assets/fonts/BebasNeueRegular.woff2") format("woff2");
-  font-display: swap;
-  font-weight: 700;
-  font-style: normal;
-}
-
 *,
 *::before,
 *::after {
